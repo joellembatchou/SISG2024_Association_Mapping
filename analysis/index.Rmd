@@ -80,7 +80,7 @@ All times listed below for the schedule are Eastern Daylight Time (EDT, Atlanta 
 ```{r wed-sched, echo = FALSE, results = "asis"}
 data.frame(
   Time = c("1:30pm-3pm", "3:30pm-5pm"),
-  Session = 1:4,
+  Session = 1:2,
   Topic = c(
     "Introduction, Case Control Association Testing & Association Testing with Quantitative Traits",
     "Introduction to the PLINK Software for GWAS & Population Structure Inference"
@@ -108,7 +108,7 @@ kableExtra::kable_styling(bootstrap_options = c("hover", "condensed","striped"))
 ```{r thu-sched, echo = FALSE, results = "asis"}
 data.frame(
   Time = c("8:30am-10am", "10:30am-12pm", "1:30pm-3pm", "3:30pm-5pm"),
-  Session = 4 + 1:4,
+  Session = 2 + 1:4,
   Topic = c(
     "GWAS in Samples with Structure & Introduction to the REGENIE Software",
     "Power, Sample Size & Design Considerations",
@@ -144,7 +144,7 @@ kableExtra::kable_styling(bootstrap_options = c("hover", "condensed","striped"))
 ```{r fri-sched, echo = FALSE, results = "asis"}
 data.frame(
   Time = c("8:30am-10am", "10:30am-12pm", "1:30pm-3pm", "3:30pm-5pm"),
-  Session = 8 + 1:2,
+  Session = 6 + 1:4,
   Topic = c(
     "Rare Variant Analysis: Collapsing Tests, Kernel (Variance Component) Tests and Omnibus Tests",
     "Emerging issues showcasing ongoing research",
