@@ -1,4 +1,5 @@
 mk_website.R
 exe/
 tmp/
+lectures/
 data/sim_rels_geno.bed
