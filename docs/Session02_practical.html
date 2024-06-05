@@ -12,7 +12,7 @@
 <meta name="author" content="" />
 
 
-<title>Session 08 - Exercises</title>
+<title>Session 02 - Exercises</title>
 
 <script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -396,7 +396,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Session 08 - Exercises</h1>
+<h1 class="title toc-ignore">Session 02 - Exercises</h1>
 <h4 class="author"></h4>
 
 </div>
@@ -641,57 +641,10 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
-
 <p>
-These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/Session08_practical.Rmd</code>)
-and HTML (<code>docs/Session08_practical.html</code>) files. If you’ve
-configured a remote Git repository (see <code>?wflow_git_remote</code>),
-click on the hyperlinks in the table below to view the files as they
-were in that past version.
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
 </p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/joellembatchou/SISG2024_Association_Mapping/de4ef792573e3c3ef16757ce5ded98cbc5b2d969/docs/Session08_practical.html" target="_blank">de4ef79</a>
-</td>
-<td>
-Joelle Mbatchou
-</td>
-<td>
-2024-06-05
-</td>
-<td>
-add docs dir
-</td>
-</tr>
-</tbody>
-</table>
-</div>
 <hr>
 </div>
 </div>
@@ -704,9 +657,8 @@ add docs dir
 <pre class="r"><code>library(data.table)
 library(dplyr)
 library(tidyr)
-library(GWASTools)
-library(ggplot2)
-library(patchwork)</code></pre>
+library(bigsnpr)
+library(ggplot2)</code></pre>
 <p>The R template to do the exercises is <a
 href="https://github.com/joellembatchou/SISG2023_Association_Mapping/tree/master/code">here</a>.</p>
 <p><em>Note: if on the online server, set your working directory to your
@@ -714,114 +666,116 @@ home directory using in R</em></p>
 <pre class="r"><code>setwd(&quot;~/&quot;)</code></pre>
 <p>The data files are in the folder
 <code>/data/SISG2023M15/data/</code>.</p>
-<div id="case-control-imbalance-in-gwas" class="section level2">
-<h2>Case-control imbalance in GWAS</h2>
+<div id="population-structure-inference" class="section level2">
+<h2>Population Structure Inference</h2>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
-<p>We will use a simulated dataset consisting of 3 binary traits with
-different amounts of case-control imbalance, as well as a genetic data
-set of null SNPs to examine the null distribution of the test statistics
-from GWAS.</p>
-</div>
-<div id="simulate-the-data" class="section level3">
-<h3>Simulate the data</h3>
-<p>We can use PLINK1.9 to simulate the genetic dataset. For <span
-class="math inline">\(N=10,000\)</span> samples, Let’s simulate 10,000
-variants where 5,000 are common with MAF chosen from a Uniform(0.05,
-0.5) distribution and for the rare variants, we will use a
-Uniform(0.001, 0.01) distribution. Run the following command in R:</p>
-<pre class="r"><code>N &lt;- 10e3
-# Generate a configuration file specifying allele frequencies (a,b) for Uniform(a,b) distribution
-write(paste0(&quot;5000 common 0.05 0.5 1 1&quot;), &quot;sim.config&quot;)
-write(paste0(&quot;5000 rare 0.001 0.01 1 1&quot;), &quot;sim.config&quot;, append = TRUE)
-# Run PLINK1.9
-system(paste0(&quot;/data/SISG2023M15/exe/plink --make-bed --simulate sim.config --simulate-ncases &quot;, N, &quot; --simulate-ncontrols 0 --simulate-prevalence 0.1  --out cc_imb_geno&quot;))</code></pre>
-<p>You should now have files <code>cc_imb_geno.{bed,bim,fam}</code>.</p>
-<p>For the phenotype data simulation, we will simulate 3 phenotypes with
-different levels of case-control imbalance (CCR 1:9, 1:99, and 1:199).
-Run the following code</p>
-<pre class="r"><code># get FID/IID from FAM file
-sample.ids &lt;- fread(&quot;cc_imb_geno.fam&quot;, header = FALSE)
-N &lt;- nrow(sample.ids)
-
-## Set prevalence = 10% (CCR 1:9)
-y1 &lt;- rbinom(N, 1, prob = 0.1 )
-## Set prevalence = 1% (CCR 1:99)
-y2 &lt;- rbinom(N, 1, prob = 0.01 )
-## Set prevalence = 0.5% (CCR 1:199)
-y3 &lt;- rbinom(N, 1, prob = 0.005 )
-
-# write to file
-data.frame(FID = sample.ids$V1, IID = sample.ids$V2, Y1 = y1, Y2 = y2, Y3 = y3) %&gt;%
-  fwrite(&quot;cc_imb_pheno.txt&quot;, sep = &quot;\t&quot;, na = NA, quote = FALSE)</code></pre>
-<p>You should now have file <code>cc_imb_pheno.txt</code>.</p>
+<p>We will be working with a subset of the genotype data from the Human
+Genome Diversity Panel (HGDP) and HapMap.</p>
+<p>The file “<a
+href="https://github.com/joellembatchou/SISG2023_Association_Mapping/tree/master/data">YRI_CEU_ASW_MEX_NAM.bed</a>”
+is a binary file in PLINK BED format with accompanying BIM and FAM
+files. It contains genotype data at autosomal SNPs for:</p>
+<ul>
+<li>Native American samples from HGDP</li>
+<li>Four population samples from HapMap:
+<ul>
+<li>Yoruba in Ibadan, Nigeria (YRI)</li>
+<li>Utah residents with ancestry from Northern and Western Europe
+(CEU)</li>
+<li>Mexican Americans in Los Angeles, California (MXL)</li>
+<li>African Americans from the south-western United States (ASW)</li>
+</ul></li>
+</ul>
+<p><strong>File with ancestry labels assignment for each
+sample</strong>: <a
+href="https://raw.githubusercontent.com/joellembatchou/SISG2023_Association_Mapping/master/data/Population_Sample_Info.txt">Population_Sample_Info.txt</a></p>
 </div>
 <div id="exercises" class="section level3">
 <h3>Exercises</h3>
-<p>We will assess the null distribution of our test statistics when
-performing association mapping using different models. Here are some
-things to try:</p>
+<p>Here are some things to look at:</p>
 <ol style="list-style-type: decimal">
-<li>Run GWAS in REGENIE (step 2) analyzing all 3 traits. The basic
-command would be</li>
+<li>Examine the dataset:</li>
 </ol>
-<pre class="r"><code>system(&quot;/data/SISG2023M15/exe/regenie --bed cc_imb_geno --phenoFile cc_imb_pheno.txt --step 2 --bsize 400 --bt  --ignore-pred --out &lt;output_prefix&gt;&quot;)</code></pre>
-<p>This will produce three files (one for each phenotype):
-<code>&lt;output_prefix&gt;_Y1.regenie</code>,
-<code>&lt;output_prefix&gt;_Y2.regenie</code>,
-<code>&lt;output_prefix&gt;_Y3.regenie</code></p>
+<ul>
+<li>How many samples are present?</li>
+<li>How many SNPs?</li>
+<li>What is the number of samples in each population?</li>
+</ul>
 <ol start="2" style="list-style-type: decimal">
-<li>Read in the three summary statistics files in R and make a QQ plot
-of the p-values for each phenotype. Since these are null SNPs, how does
-it compare to what we expect? The basic command for one phenotype would
-be</li>
+<li>Get the first 10 principal components (PCs) in PLINK using all SNPs.
+The basic command would look like</li>
 </ol>
-<pre class="r"><code>sumstats.y1 &lt;- fread(&quot;&lt;output_prefix&gt;_Y1.regenie&quot;) %&gt;% mutate(Pval = 10^(-LOG10P), Z = sign(BETA) * sqrt(CHISQ))
-qqPlot( pval = sumstats.y1$Pval )</code></pre>
+<pre class="bash"><code>plink2 --bfile &lt;plink_bed_prefix&gt; --pca 10 --out &lt;output_prefix&gt;</code></pre>
+<p>This generates a file <code>&lt;output_prefix&gt;.eigenvec</code>
+containing the PCs (eigenvectors) as well as another file
+<code>&lt;output_prefix&gt;.eigenval</code> containing the top
+eigenvalues.</p>
+<ul>
+<li>Make a scatterplot of the first two PCs with each point colored by
+population membership.</li>
+<li>Interpret the first two PCs, what ancestries are they
+reflecting?</li>
+<li>Make a scree plot of the eigenvalues for the first 10 PCs.
+Approximate the proportion of variance explained by the first two
+PCs.</li>
+</ul>
 <ol start="3" style="list-style-type: decimal">
-<li>Make a histogram of the test statistics for each phenotype and
-overlay with a normal distribution. How well do they match? We will
-create a R function to easily make this plot for different phenotypes.
-The basic command for one phenotype would be</li>
+<li>Now redo Question 2 above using the <a
+href="https://privefl.github.io/bigsnpr/reference/index.html"><code>bigsnpr</code>
+R package</a> specifying a <span class="math inline">\(r^2\)</span>
+threshold of 0.2 (i.e. LD pruning) as well as a minimum minor allele
+count (MAC) of 20. The basic command would look like</li>
 </ol>
-<pre class="r"><code>plot.sumstats.hist &lt;- function(df, title = &quot;&quot;){
-  df %&gt;%
-  ggplot( aes(x = Z) ) +
-  geom_histogram(aes(y = ..density..), colour=&quot;black&quot;, fill=&quot;white&quot;, bins = 100) +
-  stat_function(
-    fun = dnorm, 
-    col = &quot;red&quot;,
-    args = list(mean = mean(df$Z), sd = sd(df$Z))
-  ) +
-    labs(title = title)
-}
-
-# for Y1
-plot.sumstats.hist(sumstats.y1, title = &quot;Y1&quot;)</code></pre>
-<p>What do you observe as the case-control imbalance gets more
-severe?</p>
+<pre class="r"><code># run PCA
+obj.bed &lt;- bed(bedfile = &lt;plink_bed_file&gt;)
+pc.out &lt;- bed_autoSVD(
+  obj.bed, 
+  thr.r2 = &lt;r2_threshold&gt;, 
+  k = &lt;number_of_PCs&gt;, 
+  min.mac = &lt;min_MAC&gt;
+)
+# plot PC2 vs PC1
+plot(pc.out, type = &quot;scores&quot;, scores = 1:2)
+# scree plot
+plot(pc.out) 
+# plot SNP loadings (should be centered at 0)
+plot(pc.out, type = &quot;loadings&quot;, scores = 1:&lt;number_of_PCs&gt;, coeff = 0.4)</code></pre>
+<ul>
+<li>Run PCA and make a scatter plot of the first two principal
+components (PCs) with each point colored according to population
+membership.</li>
+<li>Does the plot change from the one in Question 2?</li>
+<li>Check the SNP loadings for the first 10 PCs.</li>
+</ul>
+<p><em>(Hint: This <a
+href="https://privefl.github.io/bigsnpr/articles/bedpca.html">tutorial
+document</a> from <code>bigsnpr</code> might be helpful)</em></p>
 <ol start="4" style="list-style-type: decimal">
-<li>Re-do 3 but now separate the histogram for common and rare
-SNPs.</li>
+<li><p>Predict the proportional Native American and European Ancestry
+for the HapMap MXL from the PCA output in Question 3 <em>using one of
+the principal components</em>. (Which PC is most appropriate for this
+analysis?) Assume that the HapMap MXL have negligible African
+Ancestry.</p></li>
+<li><p>Make a barplot of the proportional ancestry estimates from
+question 4.</p></li>
 </ol>
-<ul>
-<li>First separate the data frame based on common/rare simulated SNPs.
-For example for trait <code>Y1</code>:</li>
-</ul>
-<pre class="r"><code>sumstats.y1.common &lt;- sumstats.y1[ grepl(&quot;common&quot;, ID), ]
-sumstats.y1.rare &lt;- sumstats.y1[ grepl(&quot;rare&quot;, ID), ]</code></pre>
-<ul>
-<li>Make a histogram of the test statistics distribution at common/rare
-SNPs. What do you observe across the different case-control imbalances?
-To easily make side-by-side plots, we can use functionality from the R
-<code>patchwork</code> library (e.g. <code>p1|p2</code>). For
-example</li>
-</ul>
-<pre class="r"><code>plot.sumstats.hist(sumstats.y1.common, title = &quot;Y1 - Common SNPs&quot;) | plot.sumstats.hist(sumstats.y1.rare, title = &quot;Y1 - Rare SNPs&quot;)</code></pre>
-<p><em>Extra: 5. Re-run GWAS in Questions 1 but now applying Firth
-correction. Make a QQ plot of the -log10 p-values for Y3. The REGENIE
-command with Firth would be</em></p>
-<pre class="r"><code>system(&quot;/data/SISG2023M15/exe/regenie --bed cc_imb_geno --phenoFile cc_imb_pheno.txt --step 2 --bsize 400 --bt  --ignore-pred --firth --out &lt;output_prefix&gt;&quot;)</code></pre>
+<p><em>Extra: 6. Check if there are samples related 2nd degree or
+closer. If so, run PCA as in Question 3 removing these samples then
+project the remaining samples onto the PC space. The basic command would
+look like</em></p>
+<pre class="r"><code># check for 3rd degree relateds or closer
+snp_plinkKINGQC(
+  plink2.path = &quot;/usr/bin/plink2&quot;, 
+  bedfile.in = &lt;plink_bed_prefix&gt;, 
+  thr.king = 2^-3.5,
+  make.bed = FALSE
+)</code></pre>
+<p><em>(Hint: This returns a data frame which contains all pairs of
+individuals related 3rd degree or closer. We can then remove them when
+calling <code>bed_autoSVD()</code> using the <code>ind.row</code>
+argument. Finally, you can use <code>bed_projectSelfPCA()</code> to
+project related samples on the PC space.)</em></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -854,11 +808,11 @@ loaded via a namespace (and not attached):
  [9] workflowr_1.7.0  glue_1.6.2       rprojroot_2.0.3  git2r_0.32.0    
 [13] htmltools_0.5.5  httpuv_1.6.11    sass_0.4.6       fansi_1.0.4     
 [17] rmarkdown_2.22   jquerylib_0.1.4  evaluate_0.21    tibble_3.2.1    
-[21] fastmap_1.1.1    yaml_2.3.7       lifecycle_1.0.3  whisker_0.4.1   
-[25] stringr_1.5.0    compiler_4.3.0   fs_1.6.2         Rcpp_1.0.10     
-[29] pkgconfig_2.0.3  rstudioapi_0.14  later_1.3.1      digest_0.6.31   
-[33] R6_2.5.1         utf8_1.2.3       pillar_1.9.0     magrittr_2.0.3  
-[37] bslib_0.5.0      tools_4.3.0      cachem_1.0.8    </code></pre>
+[21] fastmap_1.1.1    yaml_2.3.7       lifecycle_1.0.3  stringr_1.5.0   
+[25] compiler_4.3.0   fs_1.6.2         Rcpp_1.0.10      pkgconfig_2.0.3 
+[29] rstudioapi_0.14  later_1.3.1      digest_0.6.31    R6_2.5.1        
+[33] utf8_1.2.3       pillar_1.9.0     magrittr_2.0.3   bslib_0.5.0     
+[37] tools_4.3.0      cachem_1.0.8    </code></pre>
 </div>
 </div>
 </div>
