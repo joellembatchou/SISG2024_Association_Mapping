@@ -99,7 +99,7 @@ paste0(print.link("HTML", ""), ", ", print.link("Rmd", ""))
   )
  , check.names = FALSE ) %>%
 knitr::kable("html", escape = FALSE, 
-  caption = "Wednesday, June 14th", 
+  caption = "Wednesday, June 12th", 
   align = c('l', 'c', 'l', 'l', 'l')
 ) %>%
 kableExtra::kable_styling(bootstrap_options = c("hover", "condensed","striped"))
@@ -135,7 +135,7 @@ paste0(print.link("HTML", ""), ", ", print.link("Rmd", ""))
   )
   , check.names = FALSE) %>%
 knitr::kable("html", escape = FALSE, 
-  caption = "Thursday, June 15th", 
+  caption = "Thursday, June 13th", 
   align = c('l', 'c', 'l', 'l', 'l')
 ) %>%
 kableExtra::kable_styling(bootstrap_options = c("hover", "condensed","striped"))
@@ -169,7 +169,7 @@ paste0(print.link("HTML", ""), ", ", print.link("Rmd", "")),
   )
   , check.names = FALSE) %>%
 knitr::kable("html", escape = FALSE, 
-  caption = "Friday, June 16th", 
+  caption = "Friday, June 14th", 
   align = c('l', 'c', 'l', 'l', 'l')
 ) %>%
 kableExtra::kable_styling(bootstrap_options = c("hover", "condensed","striped"))
