@@ -59,7 +59,7 @@ We will be running exercises during the course using various tools, follow the i
 
 All are free software. For those on Windows, we recommend WSL ([Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)) to run the tools above.
 
-Please be sure to install some necessary R packages with:
+Please be sure to install some necessary R packages by running the following commands in a R terminal:
 ```{r install-pkgs, eval = FALSE}
 install.packages("qqman")
 install.packages("bigsnpr")
