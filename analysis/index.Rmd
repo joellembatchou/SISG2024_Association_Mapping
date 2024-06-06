@@ -64,15 +64,12 @@ Please be sure to install some necessary R packages with:
 install.packages("qqman")
 install.packages("bigsnpr")
 install.packages("hexbin")
-install.packages("tidyverse")
-install.packages("BEDMatrix")
 install.packages("devtools")
+install.packages("tidyverse")
+install.packages("cowplot")
+install.packages("BEDMatrix")
 install.packages("SKAT")
-install.packages("patchwork")
 devtools::install_github("yaowuliu/ACAT")
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("GWASTools")
 ```
 
 ## Schedule
