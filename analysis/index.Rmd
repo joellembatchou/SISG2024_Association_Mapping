@@ -27,11 +27,11 @@ The official SISG web page can be found [here](https://sisg.biosciences.gatech.e
 ## Session Format
 The module has 10 sessions, each of 90 minutes. The standard format for a session is approximately:
 
-* 45 minutes of lecture material that will be recorded via Zoom live and posted at the end of the day
-* 30 minutes of exercises for you to try, with small-group "breakout" Zoom sessions available, attended by other class participants, and Teaching Assistants
+* 45 minutes of lecture material that will be recorded via Zoom live
+* 30 minutes of exercises for you to try 
 * 15 minute discussion of exercises, where the instructors will present possible solutions and answer questions
 
-Each session builds on previous sessions so you will get maximum benefit by attending every session live and in sequence.
+Each session builds on previous sessions so you will get maximum benefit by attending every session and in sequence.
 
 The course schedule is below.
 
