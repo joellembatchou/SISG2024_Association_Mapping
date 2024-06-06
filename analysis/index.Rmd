@@ -54,6 +54,8 @@ We will be running exercises during the course using various tools, follow the i
   <a href="https://github.com/rgcgithub/regenie/releases/" target="_blank">https://github.com/rgcgithub/regenie/releases/</a>
 * GCTA : 
   <a href="https://yanglab.westlake.edu.cn/software/gcta/#Download" target="_blank">https://yanglab.westlake.edu.cn/software/gcta/#Download</a>
+* GCTB : 
+  <a href="https://cnsgenomics.com/software/gctb/#Download" target="_blank">https://cnsgenomics.com/software/gctb/#Download</a>
 
 All are free software. For those on Windows, we recommend WSL ([Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)) to run the tools above.
 
