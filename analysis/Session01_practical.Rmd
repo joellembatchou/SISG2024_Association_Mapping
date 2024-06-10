@@ -137,7 +137,14 @@ summary(linear_model_BP)
 ```  
 2. Is there any evidence of an effect of the SNP on systolic blood pressure?
 
-3. By default, the 2-parameter model is used since the SNP is stored in the data as categorical. Contrast the parameter estimates, p-values and confidence intervals obtained between this model and using:
+3. Provide a plot illustrating the relationship between sbp and the three genotypes at SNP3.
+```{r, eval = FALSE}
+with(BP, boxplot(sbp ~ snp3))
+```
+
+* How does it compare with the linear model fitted in question (1)?
+
+4. By default, the 2-parameter model is used since the SNP is stored in the data as categorical. Contrast the parameter estimates, p-values and confidence intervals obtained between this model and using:
 
     * additive (linear) model (counting the T allele)
     * dominant model 
@@ -149,13 +156,6 @@ SNP3_additive <- 0 + 1 * (BP$snp3 == "TC") + 2 * (BP$snp3 == "TT")
 linear_model_BP_additive <- lm(sbp ~ SNP3_additive, data = BP)
 ```  
 
-4. Provide a plot illustrating the relationship between sbp and the three genotypes at SNP3.
-```{r, eval = FALSE}
-with(BP, boxplot(sbp ~ snp3))
-```
-
-* How does it compare with the linear model fitted in question (1)?
-
 
 For question 5 and 6 below, R also has a 'formula' syntax, frequently used when specifying regression models with many predictors. To regress an outcome `y` on several covariates, the syntax is:
 
@@ -163,9 +163,11 @@ For question 5 and 6 below, R also has a 'formula' syntax, frequently used when 
 lm(y ~ covariate1 + covariate2 + covariate3)
 ```
 
-5. Now redo the linear regression analysis of `sbp` from question 3 for the **additive model**, but this time adjust for `sex` and `bmi`. Do the results change?
+5. Now redo the linear regression analysis of `sbp` from question 4 for the **additive model**, but this time adjust for `sex` and `bmi`. Do the results change?
 
+#### *Extra*
 6. What proportion of the variance of `sbp` is explained by all 11 SNPs combined using categorical coding?
     * Use the `summary()` function to see the model results (the proportion of variance is the "Multiple R-squared" quantity)
-    * How would it differ if an additive coding is used for the 11 SNPs?
- 
+    * How would it differ if an additive coding is used for the 11 SNPs? 
+       * use `unique()` to check the genotypes for each SNP, e.g. `unique(BP$snp1)`
+       * count the T allele (or A allele if applicable)

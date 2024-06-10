@@ -465,10 +465,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -561,15 +561,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtreeef2ac91bb4211e820950a1834a1a4345f5bc59a6targetblankef2ac91a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree0e6e5385c9c25f4e26a1d21681d8035f5f02e8d3targetblank0e6e538a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/ef2ac91bb4211e820950a1834a1a4345f5bc59a6" target="_blank">ef2ac91</a>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/0e6e5385c9c25f4e26a1d21681d8035f5f02e8d3" target="_blank">0e6e538</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtreeef2ac91bb4211e820950a1834a1a4345f5bc59a6targetblankef2ac91a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree0e6e5385c9c25f4e26a1d21681d8035f5f02e8d3targetblank0e6e538a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -579,7 +579,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/ef2ac91bb4211e820950a1834a1a4345f5bc59a6" target="_blank">ef2ac91</a>.
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/0e6e5385c9c25f4e26a1d21681d8035f5f02e8d3" target="_blank">0e6e538</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -594,6 +594,8 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/done/
     Ignored:    data/sim_rels_geno.bed
     Ignored:    exe/
     Ignored:    lectures/
@@ -610,8 +612,8 @@ Untracked files:
     Untracked:  analysis/SISGM15_prac6Solution.Rmd
     Untracked:  analysis/SISGM15_prac9.Rmd
     Untracked:  analysis/SISGM15_prac9Solution.Rmd
-    Untracked:  analysis/Session01_practical.Rmd
     Untracked:  analysis/Session01_practical_Key.Rmd
+    Untracked:  analysis/Session01_practical_key2.Rmd
     Untracked:  analysis/Session02_practical.Rmd
     Untracked:  analysis/Session02_practical_Key.Rmd
     Untracked:  analysis/Session03_practical.Rmd
@@ -625,6 +627,9 @@ Untracked files:
     Untracked:  code/Session03_exercises.R
     Untracked:  code/Session07_exercises.R
     Untracked:  code/Session08_exercises.R
+
+Unstaged changes:
+    Modified:   analysis/Session01_practical.Rmd
 
 </code></pre>
 <p>
@@ -670,6 +675,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/blob/0e6e5385c9c25f4e26a1d21681d8035f5f02e8d3/analysis/Session01_practical.Rmd" target="_blank">0e6e538</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-10
+</td>
+<td>
+update session 1 practical
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellembatchou/SISG2024_Association_Mapping/0e6e5385c9c25f4e26a1d21681d8035f5f02e8d3/docs/Session01_practical.html" target="_blank">0e6e538</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-10
+</td>
+<td>
+update session 1 practical
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -876,6 +915,15 @@ function.</li>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Is there any evidence of an effect of the SNP on systolic blood
 pressure?</p></li>
+<li><p>Provide a plot illustrating the relationship between sbp and the
+three genotypes at SNP3.</p></li>
+</ol>
+<pre class="r"><code>with(BP, boxplot(sbp ~ snp3))</code></pre>
+<ul>
+<li>How does it compare with the linear model fitted in question
+(1)?</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
 <li><p>By default, the 2-parameter model is used since the SNP is stored
 in the data as categorical. Contrast the parameter estimates, p-values
 and confidence intervals obtained between this model and using:</p>
@@ -890,31 +938,29 @@ variable and pass it to the <code>lm()</code> function. For example with
 additive coding:</p>
 <pre class="r"><code>SNP3_additive &lt;- 0 + 1 * (BP$snp3 == &quot;TC&quot;) + 2 * (BP$snp3 == &quot;TT&quot;)
 linear_model_BP_additive &lt;- lm(sbp ~ SNP3_additive, data = BP)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Provide a plot illustrating the relationship between sbp and the
-three genotypes at SNP3.</li>
-</ol>
-<pre class="r"><code>with(BP, boxplot(sbp ~ snp3))</code></pre>
-<ul>
-<li>How does it compare with the linear model fitted in question
-(1)?</li>
-</ul>
 <p>For question 5 and 6 below, R also has a ‘formula’ syntax, frequently
 used when specifying regression models with many predictors. To regress
 an outcome <code>y</code> on several covariates, the syntax is:</p>
 <pre class="r"><code>lm(y ~ covariate1 + covariate2 + covariate3)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Now redo the linear regression analysis of <code>sbp</code> from
-question 3 for the <strong>additive model</strong>, but this time adjust
-for <code>sex</code> and <code>bmi</code>. Do the results
-change?</p></li>
-<li><p>What proportion of the variance of <code>sbp</code> is explained
-by all 11 SNPs combined using categorical coding?</p>
+<li>Now redo the linear regression analysis of <code>sbp</code> from
+question 4 for the <strong>additive model</strong>, but this time adjust
+for <code>sex</code> and <code>bmi</code>. Do the results change?</li>
+</ol>
+<div id="extra-1" class="section level4">
+<h4><em>Extra</em></h4>
+<ol start="6" style="list-style-type: decimal">
+<li>What proportion of the variance of <code>sbp</code> is explained by
+all 11 SNPs combined using categorical coding?
 <ul>
 <li>Use the <code>summary()</code> function to see the model results
 (the proportion of variance is the “Multiple R-squared” quantity)</li>
-<li>How would it differ if an additive coding is used for the 11
-SNPs?</li>
+<li>How would it differ if an additive coding is used for the 11 SNPs?
+<ul>
+<li>use <code>unique()</code> to check the genotypes for each SNP,
+e.g. <code>unique(BP$snp1)</code></li>
+<li>count the T allele (or A allele if applicable)</li>
+</ul></li>
 </ul></li>
 </ol>
 <br>
@@ -960,6 +1006,7 @@ loaded via a namespace (and not attached):
 [41] evaluate_0.21    glue_1.6.2       whisker_0.4.1    colorspace_2.1-0
 [45] fansi_1.0.4      rmarkdown_2.22   tools_4.3.0      pkgconfig_2.0.3 
 [49] htmltools_0.5.5 </code></pre>
+</div>
 </div>
 </div>
 </div>
