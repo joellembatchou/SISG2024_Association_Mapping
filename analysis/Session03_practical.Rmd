@@ -93,7 +93,8 @@ plink.gwas <- fread("gwas_plink.Pheno.glm.linear", header = TRUE)
 plot(
   x = 1:nrow(plink.gwas),
   y = -log10(plink.gwas$P),
-  col = c("orange", "purple")[1 + plink.gwas$`#CHROM` %% 2]
+  col = c("orange", "purple")[1 + plink.gwas$`#CHROM` %% 2],
+  xaxt = "n", xlab = "Genomic position", ylab = "Observed -log10(P)"
 )
 ```
 
@@ -131,10 +132,10 @@ The LOCO polygenic predictions for the phenotype are stored in `gwas_regenie_1.l
 
 9. Run REGENIE Step 2 to perform association testing.
 ```{r, eval = FALSE}
-cmd <- sprintf("%s --bed %s/sim_rels_geno --phenoFile %s/sim_rels_pheno.txt  --phenoCol Pheno --qt --step 2 --bsize 400 --pred gwas_regenie_pred.list --out gwas_regenie_step2", regenie_binary, files_dir, files_dir)
+cmd <- sprintf("%s --bed %s/sim_rels_geno --phenoFile %s/sim_rels_pheno.txt  --phenoCol Pheno --qt --step 2 --bsize 400 --pred gwas_regenie_pred.list --out step2_gwas_regenie", regenie_binary, files_dir, files_dir)
 system(cmd)
 ```  
-The REGENIE summary statistics will be in `gwas_regenie_step2_Pheno.regenie`.
+The REGENIE summary statistics will be in `step2_gwas_regenie_Pheno.regenie`.
 
 10. Generate Manhatthan and Q-Q plots based on the REGENIE association results and compute $\lambda_{GC}$. Compare with output from Questions 4-6.
   
