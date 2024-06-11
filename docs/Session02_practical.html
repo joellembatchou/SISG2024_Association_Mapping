@@ -466,10 +466,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -588,15 +588,15 @@ data
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtreea58f9a02734091311cf6bfef552c5e7f52082e9btargetblanka58f9a0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree364d0cf5429e5870d0925f5b2959cb6dd3c259abtargetblank364d0cfa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/a58f9a02734091311cf6bfef552c5e7f52082e9b" target="_blank">a58f9a0</a>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/364d0cf5429e5870d0925f5b2959cb6dd3c259ab" target="_blank">364d0cf</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtreea58f9a02734091311cf6bfef552c5e7f52082e9btargetblanka58f9a0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree364d0cf5429e5870d0925f5b2959cb6dd3c259abtargetblank364d0cfa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -606,7 +606,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/a58f9a02734091311cf6bfef552c5e7f52082e9b" target="_blank">a58f9a0</a>.
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/364d0cf5429e5870d0925f5b2959cb6dd3c259ab" target="_blank">364d0cf</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -639,8 +639,8 @@ Untracked files:
     Untracked:  analysis/SISGM15_prac9.Rmd
     Untracked:  analysis/SISGM15_prac9Solution.Rmd
     Untracked:  analysis/Session01_practical_Key.Rmd
-    Untracked:  analysis/Session02_practical.Rmd
     Untracked:  analysis/Session02_practical_Key.Rmd
+    Untracked:  analysis/Session02_practical_Key_cache/
     Untracked:  analysis/Session03_practical.Rmd
     Untracked:  analysis/Session03_practical_Key.Rmd
     Untracked:  analysis/Session07_practical.Rmd
@@ -652,6 +652,12 @@ Untracked files:
     Untracked:  code/Session03_exercises.R
     Untracked:  code/Session07_exercises.R
     Untracked:  code/Session08_exercises.R
+    Untracked:  pca_plink.eigenval
+    Untracked:  pca_plink.eigenvec
+    Untracked:  pca_plink.log
+
+Unstaged changes:
+    Modified:   analysis/Session02_practical.Rmd
 
 </code></pre>
 <p>
@@ -697,6 +703,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/blob/364d0cf5429e5870d0925f5b2959cb6dd3c259ab/analysis/Session02_practical.Rmd" target="_blank">364d0cf</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-10
+</td>
+<td>
+update practical session 2
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellembatchou/SISG2024_Association_Mapping/364d0cf5429e5870d0925f5b2959cb6dd3c259ab/docs/Session02_practical.html" target="_blank">364d0cf</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-10
+</td>
+<td>
+update practical session 2
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -812,23 +852,29 @@ the top eigenvalues.</p>
 <li>Read in the PCs in R and make a scatterplot of the first two PCs
 with each point colored by population membership.</li>
 </ol>
-<pre class="r"><code>PC_df &lt;- left_join(fam_pop_info, fread(&quot;pca_plink.eigenvec&quot;), by = c(&quot;V1&quot; = &quot;#FID&quot;, &quot;V2&quot; = &quot;IID&quot;))
-with(PC_df, plot(x=PC1, y=PC2, color = Population))</code></pre>
+<pre class="r"><code>PC_df &lt;- left_join(HGDP_ancestry_df, fread(&quot;pca_plink.eigenvec&quot;), by = c(&quot;V1&quot; = &quot;#FID&quot;, &quot;V2&quot; = &quot;IID&quot;))
+ggplot(PC_df, aes(x=PC1, y=PC2, color = Population)) +
+  geom_point()</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Interpret the first two PCs, what ancestries are they
 reflecting?</p></li>
-<li><p>Read in the eigenvalues and a scree plot corresponding to the
-first 10 PCs. Estimate the proportion of variance explained by the first
-two PCs.</p></li>
+<li><p>Read in the eigenvalues and make a scree plot corresponding for
+these first 10 PCs. Estimate the proportion of variance explained by the
+first two PCs.</p></li>
 </ol>
 <pre class="r"><code>eigenvalues_df &lt;- fread(&quot;pca_plink.eigenval&quot;, header = FALSE)
-with(eigenvalues_df, plot(x=1:10, y=V1, xlab = &quot;PC&quot;, ylab = &quot;Eigenvalue&quot;))</code></pre>
+# Make scree plot
+ggplot(eigenvalues_df, aes(x = 1:10, y = V1)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(breaks = 1:10) +
+  labs(x = &quot;PC&quot;, y = &quot;Eigenvalue&quot;)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Now redo Question 2 above using the <a
 href="https://privefl.github.io/bigsnpr/reference/index.html"><code>bigsnpr</code>
 R package</a> specifying a <span class="math inline">\(r^2\)</span>
 threshold of 0.2 (i.e. LD pruning) as well as a minimum minor allele
-count (MAC) of 20. The basic command would look like</li>
+count (MAC) of 20. The basic command is</li>
 </ol>
 <pre class="r"><code>obj.bed &lt;- bed(bedfile = sprintf(&quot;%s/YRI_CEU_ASW_MEX_NAM.bed&quot;, HGDP_dir))
 pca.bigsnpr &lt;- bed_autoSVD(
@@ -844,28 +890,46 @@ pca.bigsnpr &lt;- bed_autoSVD(
 plot(pca.bigsnpr, type = &quot;scores&quot;, scores = 1:2)
 # scree plot
 plot(pca.bigsnpr) 
-# plot SNP loadings for the first 5 PCs
-plot(pca.bigsnpr, type = &quot;loadings&quot;, scores = 1:5, coeff = 0.4)</code></pre>
+# plot SNP loadings for the first two PCs
+plot(pca.bigsnpr, type = &quot;loadings&quot;, loadings = 1:2, coeff = 0.4)</code></pre>
 <ul>
 <li>Make a scatter plot of the first two principal components (PCs) with
 each point colored according to population membership. Does the plot
 change from the one in Question 2?</li>
 </ul>
 <pre class="r"><code>plot(pca.bigsnpr, type = &quot;scores&quot;, scores = 1:2) +
-  aes(color = fam_pop_info$Population) +
+  aes(color = HGDP_ancestry_df$Population) +
   labs(color = &quot;Population&quot;)</code></pre>
 <ul>
-<li>Check the SNP loadings for the first 10 PCs.</li>
+<li>Check the SNP loadings for the first 5 PCs.</li>
 </ul>
 <ol start="7" style="list-style-type: decimal">
-<li><p>Predict the proportional Native American and European Ancestry
-for the HapMap MXL from the PCA output in Question 6 <em>using one of
-the principal components</em>. (Which PC is most appropriate for this
-analysis?) Assume that the HapMap MXL have negligible African
-Ancestry.</p></li>
-<li><p>Make a barplot of the proportional ancestry estimates from
-question 4.</p></li>
+<li>Predict the proportion of Native American ancestry for the HapMap
+MXL based on the PCA output in Question 3 <em>using one of the principal
+components</em> and assuming that the HapMap MXL have negligible African
+Ancestry. Which PC is most appropriate for this analysis?</li>
 </ol>
+<p><em>Hint</em>: To compute the average PC2 value for individuals of
+CEU ancestry:</p>
+<pre class="r"><code>ceu.mean &lt;- with(PC_df, mean(PC2[Population == &quot;CEU&quot;]))</code></pre>
+<p>Do the same for individuals of NAM ancestry. How can you express
+distances of the MXL individuals relative to those means based on the
+chosen PC?</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Make a barplot of the proportional Native American/European ancestry
+estimates based on your output of question 7.</li>
+</ol>
+<pre class="r"><code># this line assumes the proportion of NAM ancestry is stored in a variable called &quot;mxl.prop.nam&quot;
+sorted.props.nam &lt;- sort(mxl.prop.nam, decreasing = TRUE)
+
+df_mxl_props &lt;- data.frame(
+  anc.props = c(sorted.props.nam, 1 - sorted.props.nam),
+  x = rep(1:length(sorted.props.nam), times = 2),
+  population.labels = rep(c(&quot;NAM&quot;, &quot;CEU&quot;), each = length(sorted.props.nam))
+)
+ggplot(df_mxl_props, aes(x = x, y = anc.props, fill = population.labels)) +
+  geom_bar(position=&quot;stack&quot;, stat=&quot;identity&quot;) +
+  labs(x=&quot;Sample&quot;, y = &quot;Ancestry Proportion&quot;, fill = &quot;Population&quot;)</code></pre>
 <div id="extra" class="section level3">
 <h3><em>Extra</em></h3>
 <ol start="9" style="list-style-type: decimal">
@@ -876,21 +940,22 @@ samples onto the PC space.</li>
 <ul>
 <li>The command to check relatedness is:</li>
 </ul>
-<pre class="r"><code># check for 3rd degree relateds or closer
+<pre class="r"><code># check for 2nd degree relateds or closer
 relatedness_info &lt;- snp_plinkKINGQC(
   plink2.path = plink2_binary, 
   bedfile.in = sprintf(&quot;%s/YRI_CEU_ASW_MEX_NAM.bed&quot;, HGDP_dir), 
-  thr.king = 2^-3.5, # threshold for 3rd degree relateds
+  thr.king = 2^-3.5, # threshold to identify 2nd degree relateds
   make.bed = FALSE
 )</code></pre>
 <p>This returns a data frame which contains all pairs of individuals
-related 3rd degree or closer.</p>
+related 2nd degree or closer.</p>
 <ul>
 <li>We can then remove them when calling <code>bed_autoSVD()</code>
 using the <code>ind.row</code> argument.</li>
 </ul>
-<pre class="r"><code>ind.rel &lt;- match(c(relatedness_info$IID1, relatedness_info$IID2), obj.bed$fam$sample.ID)
-ind.norel &lt;- rows_along(obj.bed)[-ind.rel]
+<pre class="r"><code>ind.rel &lt;- match(c(relatedness_info$IID1, relatedness_info$IID2), obj.bed$fam$sample.ID) # relateds
+ind.norel &lt;- rows_along(obj.bed)[-ind.rel] # unrelateds
+# Run PCA on unrelateds
 obj.svd2 &lt;- bed_autoSVD(
   obj.bed, 
   thr.r2 = 0.1, # R^2 threshold
@@ -932,7 +997,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggplot2_3.4.2     bigsnpr_1.12.2    bigstatsr_1.5.12  dplyr_1.1.2      
+[1] ggplot2_3.4.2     bigsnpr_1.12.9    bigstatsr_1.5.12  dplyr_1.1.2      
 [5] data.table_1.14.8
 
 loaded via a namespace (and not attached):
