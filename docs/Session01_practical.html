@@ -405,7 +405,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -416,8 +416,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -426,13 +426,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-10
+<strong>Last updated:</strong> 2024-06-12
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -456,18 +456,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -558,15 +561,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree9f42996b24883c48ccadabfe6c1e5fb8bdbce926targetblank9f42996a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree07e64db635c9102bce2a42ec42a79804a16cad88targetblank07e64dba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/9f42996b24883c48ccadabfe6c1e5fb8bdbce926" target="_blank">9f42996</a>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/07e64db635c9102bce2a42ec42a79804a16cad88" target="_blank">07e64db</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree9f42996b24883c48ccadabfe6c1e5fb8bdbce926targetblank9f42996a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree07e64db635c9102bce2a42ec42a79804a16cad88targetblank07e64dba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -576,7 +579,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/9f42996b24883c48ccadabfe6c1e5fb8bdbce926" target="_blank">9f42996</a>.
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/07e64db635c9102bce2a42ec42a79804a16cad88" target="_blank">07e64db</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -592,36 +595,39 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    analysis/.DS_Store
+    Ignored:    chr1_region_rv.log
     Ignored:    data/sim_rels_geno.bed
     Ignored:    exe/
+    Ignored:    gwas_plink.log
     Ignored:    lectures/
     Ignored:    mk_website.R
+    Ignored:    pca_plink.log
     Ignored:    tmp/
 
 Untracked files:
     Untracked:  .Rhistory
-    Untracked:  analysis/SISGM15_prac4.Rmd
     Untracked:  analysis/SISGM15_prac4Solution.Rmd
-    Untracked:  analysis/SISGM15_prac5.Rmd
     Untracked:  analysis/SISGM15_prac5Solution.Rmd
-    Untracked:  analysis/SISGM15_prac6.Rmd
     Untracked:  analysis/SISGM15_prac6Solution.Rmd
-    Untracked:  analysis/SISGM15_prac9.Rmd
     Untracked:  analysis/SISGM15_prac9Solution.Rmd
     Untracked:  analysis/Session01_practical_Key.Rmd
-    Untracked:  analysis/Session02_practical.Rmd
     Untracked:  analysis/Session02_practical_Key.Rmd
-    Untracked:  analysis/Session03_practical.Rmd
+    Untracked:  analysis/Session02_practical_Key_cache/
     Untracked:  analysis/Session03_practical_Key.Rmd
     Untracked:  analysis/Session07_practical.Rmd
     Untracked:  analysis/Session07_practical_Key.Rmd
     Untracked:  analysis/Session08_practical.Rmd
     Untracked:  analysis/Session08_practical_Key.Rmd
-    Untracked:  code/Session01_exercises.R
-    Untracked:  code/Session02_exercises.R
-    Untracked:  code/Session03_exercises.R
-    Untracked:  code/Session07_exercises.R
-    Untracked:  code/Session08_exercises.R
+    Untracked:  chr1_region_rv.bed
+    Untracked:  chr1_region_rv.bim
+    Untracked:  chr1_region_rv.fam
+    Untracked:  pca_plink.eigenval
+    Untracked:  pca_plink.eigenvec
+
+Unstaged changes:
+    Modified:   analysis/Session01_practical.Rmd
+    Modified:   analysis/Session02_practical.Rmd
+    Modified:   analysis/Session03_practical.Rmd
 
 </code></pre>
 <p>
@@ -667,6 +673,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellembatchou/SISG2024_Association_Mapping/a58f9a02734091311cf6bfef552c5e7f52082e9b/docs/Session01_practical.html" target="_blank">a58f9a0</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-10
+</td>
+<td>
+update practical session 1
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -799,8 +822,6 @@ update session pages
 <li>For this lab, we will use a few R libraries:</li>
 </ul>
 <pre class="r"><code>library(data.table)</code></pre>
-<p>The R template to do the exercises is <a
-href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/master/code">here</a>.</p>
 <div id="case-control-association-testing" class="section level2">
 <h2>Case-Control Association Testing</h2>
 <div id="introduction" class="section level3">
@@ -1042,7 +1063,7 @@ LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlap
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
-time zone: America/Chicago
+time zone: America/New_York
 tzcode source: internal
 
 attached base packages:

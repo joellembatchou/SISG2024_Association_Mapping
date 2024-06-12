@@ -14,7 +14,6 @@ Before you begin:
 library(data.table)
 ```
 
-The R template to do the exercises is [here](https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/master/code).
 
 ## Case-Control Association Testing
 

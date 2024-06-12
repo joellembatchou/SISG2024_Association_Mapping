@@ -17,8 +17,6 @@ library(bigsnpr)
 library(ggplot2)
 ```
 
-The R template to do the exercises is [here](https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/master/code).
-
 ## Introduction
 We will be working with a subset of the genotype data from the Human Genome Diversity Panel (HGDP) and HapMap.
 
