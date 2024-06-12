@@ -128,9 +128,9 @@ data.frame(
   ),
   "Key" = c(
 "" , # paste0(print.link("HTML", "Session03_practical_Key.html")),
-paste0(print.link("HTML", "")),
-paste0(print.link("HTML", "")),
-paste0(print.link("HTML", ""))
+"" , # paste0(print.link("HTML", "")),
+"" , # paste0(print.link("HTML", "")),
+""  # paste0(print.link("HTML", ""))
   )
   , check.names = FALSE) %>%
 knitr::kable("html", escape = FALSE, 
@@ -163,9 +163,9 @@ data.frame(
     " "
   ),
   "Key" = c(
-paste0(print.link("HTML", "")),
-paste0(print.link("HTML", "")),
-   " ",# paste0(print.link("HTML", "")),
+"" , # paste0(print.link("HTML", "Session07_practical_Key.html")),
+"" , # paste0(print.link("HTML", "Session08_practical_Key.html")),
+"" , # paste0(print.link("HTML", "")),
     " "
   )
   , check.names = FALSE) %>%
