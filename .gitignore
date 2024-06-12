@@ -4,3 +4,4 @@ tmp/
 lectures/
 data/sim_rels_geno.bed
 docs/figure/*/*.png
+*.log
