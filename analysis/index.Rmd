@@ -115,7 +115,7 @@ data.frame(
     "Downstream analyses: Polygenic Risk Scores"
     ),
   Lecture = c(
-    paste0(print.link("Lecture", "")),
+    paste0(print.link("Lecture", "https://gatech.box.com/s/l5yfz14ticpiwp5slizrpibr8xmdnp47")),
     paste0(print.link("Lecture", "")),
     paste0(print.link("Lecture", "")),
     paste0(print.link("Lecture", ""))
@@ -151,7 +151,9 @@ data.frame(
     "Emerging issues showcasing ongoing research"
     ),
   Lecture = c(
-    paste0(print.link("Lecture", "")),
+    paste0(print.link("Lecture", "https://gatech.box.com/s/23oaznfpqo3yednenbp43c1dg3idi9jv")),
+    paste0(print.link("Lecture", "https://gatech.box.com/s/hgw8lvnxf88ecmasxa9v0ypa5tjm1oiq")),
+    "Lecture",
     "Lecture" 
       ),
   "Exercises" = c(
