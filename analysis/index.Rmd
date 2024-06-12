@@ -116,9 +116,9 @@ data.frame(
     ),
   Lecture = c(
     paste0(print.link("Lecture", "https://gatech.box.com/s/l5yfz14ticpiwp5slizrpibr8xmdnp47")),
-    paste0(print.link("Lecture", "")),
-    paste0(print.link("Lecture", "")),
-    paste0(print.link("Lecture", ""))
+    paste0(print.link("Lecture", "https://gatech.box.com/s/i8b0l7tlw2r8d7scgluip4e5c8qtam03")),
+    paste0(print.link("Lecture", "https://gatech.box.com/s/6id19t1c5bibu902g8rua74nz0030cho")),
+    paste0(print.link("Lecture", "https://gatech.box.com/s/m26dqx4zr3m6bzumzo70aaznijw4r4wc"))
       ),
   "Exercises" = c(
     paste0(print.link("Exercises", "Session03_practical.html")),
@@ -153,7 +153,7 @@ data.frame(
   Lecture = c(
     paste0(print.link("Lecture", "https://gatech.box.com/s/23oaznfpqo3yednenbp43c1dg3idi9jv")),
     paste0(print.link("Lecture", "https://gatech.box.com/s/hgw8lvnxf88ecmasxa9v0ypa5tjm1oiq")),
-    "Lecture",
+    paste0(print.link("Lecture", "https://gatech.box.com/s/gimv6rcoiiz5ywkznx8999c76drfrrlv")),
     "Lecture" 
       ),
   "Exercises" = c(
