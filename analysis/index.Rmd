@@ -85,16 +85,16 @@ data.frame(
     "Introduction to the PLINK Software for GWAS & Population Structure Inference"
     ),
   Lecture = c(
-    paste0(print.link("Intro", ""), ", ", print.link("Lecture", "")),
-    paste0(print.link("Lecture", ""))
+    paste0(print.link("Intro", "https://gatech.box.com/s/q6fhf1vnztrgqfaij9qcjgw4a4c7q8sg"), ", ", print.link("Lecture", "https://gatech.box.com/s/j01hvhc6ezprpg3lljqy55b14c6w3d3n")),
+    paste0(print.link("Lecture", "https://gatech.box.com/s/kb88kztraktpv9nxh6wtuo89f8fubd7r"))
       ),
   "Exercises" = c(
     paste0(print.link("Exercises", "Session01_practical.html")),
     paste0(print.link("Exercises", "Session02_practical.html"))
   ),
   "Key" = c(
-paste0(print.link("HTML", ""), ", ", print.link("Rmd", "")),
-paste0(print.link("HTML", ""), ", ", print.link("Rmd", ""))
+paste0(print.link("HTML", "")),
+paste0(print.link("HTML", ""))
   )
  , check.names = FALSE ) %>%
 knitr::kable("html", escape = FALSE, 
@@ -127,10 +127,10 @@ data.frame(
     paste0(print.link("Exercises", "SISGM15_prac6.html"))
   ),
   "Key" = c(
-paste0(print.link("HTML", ""), ", ", print.link("Rmd", "")),
-paste0(print.link("HTML", ""), ", ", print.link("Rmd", "")),
-paste0(print.link("HTML", ""), ", ", print.link("Rmd", "")),
-paste0(print.link("HTML", ""), ", ", print.link("Rmd", ""))
+paste0(print.link("HTML", "")),
+paste0(print.link("HTML", "")),
+paste0(print.link("HTML", "")),
+paste0(print.link("HTML", ""))
   )
   , check.names = FALSE) %>%
 knitr::kable("html", escape = FALSE, 
@@ -161,9 +161,9 @@ data.frame(
     " "
   ),
   "Key" = c(
-paste0(print.link("HTML", ""), ", ", print.link("Rmd", "")),
-paste0(print.link("HTML", ""), ", ", print.link("Rmd", "")),
-   " ",# paste0(print.link("HTML", ""), ", ", print.link("Rmd", "")),
+paste0(print.link("HTML", "")),
+paste0(print.link("HTML", "")),
+   " ",# paste0(print.link("HTML", "")),
     " "
   )
   , check.names = FALSE) %>%
