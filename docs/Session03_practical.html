@@ -427,7 +427,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-12
+<strong>Last updated:</strong> 2024-06-13
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -588,15 +588,15 @@ data
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree07e64db635c9102bce2a42ec42a79804a16cad88targetblank07e64dba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree7452073878eda0b3c27de04846e2bb9f491a9ca1targetblank7452073a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/07e64db635c9102bce2a42ec42a79804a16cad88" target="_blank">07e64db</a>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/7452073878eda0b3c27de04846e2bb9f491a9ca1" target="_blank">7452073</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree07e64db635c9102bce2a42ec42a79804a16cad88targetblank07e64dba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree7452073878eda0b3c27de04846e2bb9f491a9ca1targetblank7452073a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -606,7 +606,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/07e64db635c9102bce2a42ec42a79804a16cad88" target="_blank">07e64db</a>.
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/7452073878eda0b3c27de04846e2bb9f491a9ca1" target="_blank">7452073</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -621,13 +621,15 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    analysis/.DS_Store
-    Ignored:    chr1_region_rv.log
     Ignored:    data/sim_rels_geno.bed
     Ignored:    exe/
     Ignored:    gwas_plink.log
+    Ignored:    gwas_regenie.log
     Ignored:    lectures/
     Ignored:    mk_website.R
+    Ignored:    step2_gwas_regenie.log
     Ignored:    tmp/
 
 Untracked files:
@@ -643,13 +645,10 @@ Untracked files:
     Untracked:  analysis/Session07_practical_Key.Rmd
     Untracked:  analysis/Session08_practical.Rmd
     Untracked:  analysis/Session08_practical_Key.Rmd
-    Untracked:  chr1_region_rv.bed
-    Untracked:  chr1_region_rv.bim
-    Untracked:  chr1_region_rv.fam
+    Untracked:  data/run_regenie.r
 
 Unstaged changes:
-    Modified:   analysis/Session01_practical.Rmd
-    Modified:   analysis/Session02_practical.Rmd
+    Modified:   .gitignore
     Modified:   analysis/Session03_practical.Rmd
 
 </code></pre>
@@ -696,6 +695,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/blob/81864cca4f70f5dfb12f0e740af8d24dcbd15f33/analysis/Session03_practical.Rmd" target="_blank">81864cc</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+update practicals
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellembatchou/SISG2024_Association_Mapping/81864cca4f70f5dfb12f0e740af8d24dcbd15f33/docs/Session03_practical.html" target="_blank">81864cc</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+update practicals
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -880,8 +913,8 @@ filter_maf =
 filter_missing_rate = 
 filter_hwe = 
 
-cmd &lt;- sprintf(&quot;%s --bfile %s/sim_rels_geno --pheno %s/sim_rels_pheno.txt --pheno-name Pheno --maf %g --geno %g --hwe %g --glm allow-no-covars --out gwas_plink&quot;, plink2_binary, files_dir, files_dir, filter_maf, filter_missing_rate, filter_hwe)
-system(cmd)</code></pre>
+cmd &lt;- sprintf(&#39;%s --bfile &quot;%s/sim_rels_geno&quot; --pheno &quot;%s/sim_rels_pheno.txt&quot; --pheno-name Pheno --maf %g --geno %g --hwe %g --glm allow-no-covars --out gwas_plink&#39;, plink2_binary, files_dir, files_dir, filter_maf, filter_missing_rate, filter_hwe)
+system(cmd, intern = T)</code></pre>
 <p>The results of the GWAS are stored in
 <code>gwas_plink.Pheno.glm.linear</code>.</p>
 <ol start="4" style="list-style-type: decimal">
@@ -922,25 +955,72 @@ filter_missing_rate =
 filter_hwe = 
 filter_mac = 
 
-cmd &lt;- sprintf(&quot;%s --bfile %s/sim_rels_geno --pheno %s/sim_rels_pheno.txt --pheno-name Pheno --maf %g --geno %g --hwe %g --mac %g --write-snplist --out qc_pass&quot;, plink2_binary, files_dir, files_dir, filter_maf, filter_missing_rate, filter_hwe, filter_mac)
-system(cmd)</code></pre>
+cmd &lt;- sprintf(&#39;%s --bfile &quot;%s/sim_rels_geno&quot; --pheno &quot;%s/sim_rels_pheno.txt&quot; --pheno-name Pheno --maf %g --geno %g --hwe %g --mac %g --write-snplist --out qc_pass&#39;, plink2_binary, files_dir, files_dir, filter_maf, filter_missing_rate, filter_hwe, filter_mac)
+system(cmd, intern = T)</code></pre>
 <p>This produces a file <code>qc_pass.snplist</code> containing a list
 of variant IDs that pass the QC filters.</p>
+<div id="if-regenie-software-is-installed-on-your-machine"
+class="section level3">
+<h3>If REGENIE software is installed on your machine</h3>
 <ol start="8" style="list-style-type: decimal">
 <li>Run REGENIE Step 1 to fit the null model and obtain polygenic
 predictions using a leave-one-chromosome-out (LOCO) scheme.</li>
 </ol>
-<pre class="r"><code>cmd &lt;- sprintf(&quot;%s --bed %s/sim_rels_geno --phenoFile %s/sim_rels_pheno.txt  --phenoCol Pheno --qt --step 1 --loocv --bsize 1000 --extract qc_pass.snplist --out gwas_regenie&quot;, regenie_binary, files_dir, files_dir)
-system(cmd)</code></pre>
+<pre class="r"><code>cmd &lt;- sprintf(&#39;%s --bed &quot;%s/sim_rels_geno&quot; --phenoFile &quot;%s/sim_rels_pheno.txt&quot;  --phenoCol Pheno --qt --step 1 --loocv --bsize 1000 --extract qc_pass.snplist --out gwas_regenie&#39;, regenie_binary, files_dir, files_dir)
+system(cmd, intern = T)</code></pre>
 <p>The LOCO polygenic predictions for the phenotype are stored in
 <code>gwas_regenie_1.loco</code>.</p>
 <ol start="9" style="list-style-type: decimal">
 <li>Run REGENIE Step 2 to perform association testing.</li>
 </ol>
-<pre class="r"><code>cmd &lt;- sprintf(&quot;%s --bed %s/sim_rels_geno --phenoFile %s/sim_rels_pheno.txt  --phenoCol Pheno --qt --step 2 --bsize 400 --pred gwas_regenie_pred.list --out step2_gwas_regenie&quot;, regenie_binary, files_dir, files_dir)
-system(cmd)</code></pre>
+<pre class="r"><code>cmd &lt;- sprintf(&#39;%s --bed &quot;%s/sim_rels_geno&quot; --phenoFile &quot;%s/sim_rels_pheno.txt&quot; --phenoCol Pheno --qt --step 2 --bsize 400 --pred gwas_regenie_pred.list --out step2_gwas_regenie&#39;, regenie_binary, files_dir, files_dir)
+system(cmd, intern = T)</code></pre>
 <p>The REGENIE summary statistics will be in
 <code>step2_gwas_regenie_Pheno.regenie</code>.</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Generate Manhatthan and Q-Q plots based on the REGENIE association
+results and compute <span class="math inline">\(\lambda_{GC}\)</span>.
+Compare with output from Questions 4-6.</li>
+</ol>
+</div>
+<div id="if-regenie-software-does-not-run-on-your-machine"
+class="section level3">
+<h3>If REGENIE software does not run on your machine</h3>
+<ol start="8" style="list-style-type: decimal">
+<li>We will use an implementation of REGENIE in R. Download it <a
+href="https://gatech.box.com/s/k7yk3tpqlekuc7zh6xquyjh9vbvumcx7">here</a>
+and change the path of the variable <code>regenie_script</code> to the
+path of the script on your machine</li>
+</ol>
+<pre class="r"><code>regenie_script &lt;- &quot;/Users/xyz/Downloads/run_regenie.r&quot;
+source(regenie_script)</code></pre>
+<ul>
+<li>We now run REGENIE Step 1 to fit the null model and obtain polygenic
+predictions using a leave-one-chromosome-out (LOCO) scheme.</li>
+</ul>
+<pre class="r"><code>loco_pred &lt;- run_regenie_step1(
+  bedfile = paste0(files_dir, &quot;/sim_rels_geno&quot;),
+  phenofile = paste0(files_dir, &quot;/sim_rels_pheno.txt&quot;),
+  phenocol = &quot;Pheno&quot;,
+  bsize = 1000,
+  extract = &quot;qc_pass.snplist&quot;
+) </code></pre>
+<p>This function will return the LOCO polygenic predictions for the
+phenotype.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Run REGENIE Step 2 to perform association testing.</li>
+</ol>
+<pre class="r"><code>sumstats_regenie &lt;- run_regenie_step2(
+  bedfile = paste0(files_dir, &quot;/sim_rels_geno&quot;),
+  phenofile = paste0(files_dir, &quot;/sim_rels_pheno.txt&quot;),
+  phenocol = &quot;Pheno&quot;,
+  bsize = 200,
+  loco.mat = loco_pred
+) 
+
+str(sumstats_regenie)</code></pre>
+<p>This function returns a data frame containing the REGENIE summary
+statistics.</p>
 <ol start="10" style="list-style-type: decimal">
 <li>Generate Manhatthan and Q-Q plots based on the REGENIE association
 results and compute <span class="math inline">\(\lambda_{GC}\)</span>.
@@ -989,6 +1069,7 @@ loaded via a namespace (and not attached):
 [41] vctrs_0.6.2      evaluate_0.21    glue_1.6.2       whisker_0.4.1   
 [45] colorspace_2.1-0 fansi_1.0.4      rmarkdown_2.22   tools_4.3.0     
 [49] pkgconfig_2.0.3  htmltools_0.5.5 </code></pre>
+</div>
 </div>
 </div>
 
