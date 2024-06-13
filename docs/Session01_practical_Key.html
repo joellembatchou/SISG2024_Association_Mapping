@@ -405,7 +405,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -416,8 +416,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -426,13 +426,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-12
+<strong>Last updated:</strong> 2024-06-13
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -456,21 +456,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -561,15 +558,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree8d5f0df1d77e68d12c95572cad1e83b27dc4095dtargetblank8d5f0dfa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtreed7e0b4a2df6ca09c8c755a14b4abcba9f8074925targetblankd7e0b4aa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/8d5f0df1d77e68d12c95572cad1e83b27dc4095d" target="_blank">8d5f0df</a>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/d7e0b4a2df6ca09c8c755a14b4abcba9f8074925" target="_blank">d7e0b4a</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtree8d5f0df1d77e68d12c95572cad1e83b27dc4095dtargetblank8d5f0dfa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomjoellembatchouSISG2024AssociationMappingtreed7e0b4a2df6ca09c8c755a14b4abcba9f8074925targetblankd7e0b4aa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -579,7 +576,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/8d5f0df1d77e68d12c95572cad1e83b27dc4095d" target="_blank">8d5f0df</a>.
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/tree/d7e0b4a2df6ca09c8c755a14b4abcba9f8074925" target="_blank">d7e0b4a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -607,18 +604,21 @@ Ignored files:
 
 Untracked files:
     Untracked:  .Rhistory
-    Untracked:  analysis/.index.Rmd.swp
     Untracked:  analysis/SISGM15_prac4Solution.Rmd
     Untracked:  analysis/SISGM15_prac5Solution.Rmd
     Untracked:  analysis/SISGM15_prac6Solution.Rmd
     Untracked:  analysis/SISGM15_prac9Solution.Rmd
-    Untracked:  analysis/Session01_practical_Key.Rmd
     Untracked:  analysis/Session02_practical_Key.Rmd
     Untracked:  analysis/Session03_practical_Key.Rmd
     Untracked:  analysis/Session07_practical.Rmd
     Untracked:  analysis/Session07_practical_Key.Rmd
     Untracked:  analysis/Session08_practical.Rmd
     Untracked:  analysis/Session08_practical_Key.Rmd
+    Untracked:  data/run_regenie.r
+    Untracked:  notes.txt
+
+Unstaged changes:
+    Modified:   .gitignore
 
 </code></pre>
 <p>
@@ -665,6 +665,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/blob/d7e0b4a2df6ca09c8c755a14b4abcba9f8074925/analysis/Session01_practical_Key.Rmd" target="_blank">d7e0b4a</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-13
+</td>
+<td>
+update practical
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellembatchou/SISG2024_Association_Mapping/dcf5d117b5e9bc6fa8ef3ff1f2bd9e74ddcebebc/docs/Session01_practical_Key.html" target="_blank">dcf5d11</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+update html files
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -809,10 +843,84 @@ e.g. <code>?table</code></li>
 </ol>
 <pre class="r"><code>barplot(table(LHON$GENO))</code></pre>
 <p><img src="figure/Session01_practical_Key.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/blob/de1eb44e78631d59798fd90959eb6eebd47eec96/docs/figure/Session01_practical_Key.Rmd/unnamed-chunk-4-1.png" target="_blank">de1eb44</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># Visualize the distribution of the genotypes across cases/controls
 barplot(table(LHON$PHENO, LHON$GENO), col = c(&quot;blue&quot;,&quot;red&quot;))
 legend(&quot;topleft&quot;, legend = c(&quot;CASE&quot;, &quot;CONTROL&quot;), fill = c(&quot;blue&quot;,&quot;red&quot;))</code></pre>
 <p><img src="figure/Session01_practical_Key.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-2">
+Past versions of unnamed-chunk-4-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/blob/de1eb44e78631d59798fd90959eb6eebd47eec96/docs/figure/Session01_practical_Key.Rmd/unnamed-chunk-4-2.png" target="_blank">de1eb44</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># Compute allele frequency for allele &#39;T&#39;
 (1 * sum(LHON$GENO == &quot;CT&quot;) + 2 * sum(LHON$GENO == &quot;TT&quot;)) / (2 * nrow(LHON))</code></pre>
 <pre><code>[1] 0.8384146</code></pre>
@@ -1040,6 +1148,43 @@ with(BP, {
   points(x = 1:length(means), y = means, col = &quot;red&quot;, pch = 18)
 })</code></pre>
 <p><img src="figure/Session01_practical_Key.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
+Past versions of unnamed-chunk-16-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-16-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellembatchou/SISG2024_Association_Mapping/blob/de1eb44e78631d59798fd90959eb6eebd47eec96/docs/figure/Session01_practical_Key.Rmd/unnamed-chunk-16-1.png" target="_blank">de1eb44</a>
+</td>
+<td>
+Joelle Mbatchou
+</td>
+<td>
+2024-06-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <ol start="4" style="list-style-type: decimal">
 <li><p>By default, the 2-parameter model is used since the SNP is stored
 in the data as categorical. Contrast the parameter estimates, p-values
