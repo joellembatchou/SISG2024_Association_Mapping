@@ -81,8 +81,8 @@ filter_maf =
 filter_missing_rate = 
 filter_hwe = 
 
-cmd <- sprintf("%s --bfile %s/sim_rels_geno --pheno %s/sim_rels_pheno.txt --pheno-name Pheno --maf %g --geno %g --hwe %g --glm allow-no-covars --out gwas_plink", plink2_binary, files_dir, files_dir, filter_maf, filter_missing_rate, filter_hwe)
-system(cmd)
+cmd <- sprintf('%s --bfile "%s/sim_rels_geno" --pheno "%s/sim_rels_pheno.txt" --pheno-name Pheno --maf %g --geno %g --hwe %g --glm allow-no-covars --out gwas_plink', plink2_binary, files_dir, files_dir, filter_maf, filter_missing_rate, filter_hwe)
+system(cmd, intern = T)
 ```
 The results of the GWAS are stored in `gwas_plink.Pheno.glm.linear`.
 
@@ -117,24 +117,60 @@ filter_missing_rate =
 filter_hwe = 
 filter_mac = 
 
-cmd <- sprintf("%s --bfile %s/sim_rels_geno --pheno %s/sim_rels_pheno.txt --pheno-name Pheno --maf %g --geno %g --hwe %g --mac %g --write-snplist --out qc_pass", plink2_binary, files_dir, files_dir, filter_maf, filter_missing_rate, filter_hwe, filter_mac)
-system(cmd)
+cmd <- sprintf('%s --bfile "%s/sim_rels_geno" --pheno "%s/sim_rels_pheno.txt" --pheno-name Pheno --maf %g --geno %g --hwe %g --mac %g --write-snplist --out qc_pass', plink2_binary, files_dir, files_dir, filter_maf, filter_missing_rate, filter_hwe, filter_mac)
+system(cmd, intern = T)
 ```
 This produces a file `qc_pass.snplist` containing a list of variant IDs that pass the QC filters.
   
+### If REGENIE software is installed on your machine
 8. Run REGENIE Step 1 to fit the null model and obtain polygenic predictions using a leave-one-chromosome-out (LOCO) scheme. 
 ```{r, eval = FALSE}
-cmd <- sprintf("%s --bed %s/sim_rels_geno --phenoFile %s/sim_rels_pheno.txt  --phenoCol Pheno --qt --step 1 --loocv --bsize 1000 --extract qc_pass.snplist --out gwas_regenie", regenie_binary, files_dir, files_dir)
-system(cmd)
+cmd <- sprintf('%s --bed "%s/sim_rels_geno" --phenoFile "%s/sim_rels_pheno.txt"  --phenoCol Pheno --qt --step 1 --loocv --bsize 1000 --extract qc_pass.snplist --out gwas_regenie', regenie_binary, files_dir, files_dir)
+system(cmd, intern = T)
 ```
 The LOCO polygenic predictions for the phenotype are stored in `gwas_regenie_1.loco`.
 
 9. Run REGENIE Step 2 to perform association testing.
 ```{r, eval = FALSE}
-cmd <- sprintf("%s --bed %s/sim_rels_geno --phenoFile %s/sim_rels_pheno.txt  --phenoCol Pheno --qt --step 2 --bsize 400 --pred gwas_regenie_pred.list --out step2_gwas_regenie", regenie_binary, files_dir, files_dir)
-system(cmd)
+cmd <- sprintf('%s --bed "%s/sim_rels_geno" --phenoFile "%s/sim_rels_pheno.txt" --phenoCol Pheno --qt --step 2 --bsize 400 --pred gwas_regenie_pred.list --out step2_gwas_regenie', regenie_binary, files_dir, files_dir)
+system(cmd, intern = T)
 ```  
 The REGENIE summary statistics will be in `step2_gwas_regenie_Pheno.regenie`.
+
+10. Generate Manhatthan and Q-Q plots based on the REGENIE association results and compute $\lambda_{GC}$. Compare with output from Questions 4-6.
+  
+### If REGENIE software does not run on your machine
+8. We will use an implementation of REGENIE in R. Download it [here](https://gatech.box.com/s/k7yk3tpqlekuc7zh6xquyjh9vbvumcx7) and change the path of the variable `regenie_script` to the path of the script on your machine
+```{r, eval = FALSE}
+regenie_script <- "/Users/xyz/Downloads/run_regenie.r"
+source(regenie_script)
+```
+
+* We now run REGENIE Step 1 to fit the null model and obtain polygenic predictions using a leave-one-chromosome-out (LOCO) scheme.
+```{r, eval = FALSE}
+loco_pred <- run_regenie_step1(
+  bedfile = paste0(files_dir, "/sim_rels_geno"),
+  phenofile = paste0(files_dir, "/sim_rels_pheno.txt"),
+  phenocol = "Pheno",
+  bsize = 1000,
+  extract = "qc_pass.snplist"
+) 
+```
+This function will return the LOCO polygenic predictions for the phenotype.
+
+9. Run REGENIE Step 2 to perform association testing.
+```{r, eval = FALSE}
+sumstats_regenie <- run_regenie_step2(
+  bedfile = paste0(files_dir, "/sim_rels_geno"),
+  phenofile = paste0(files_dir, "/sim_rels_pheno.txt"),
+  phenocol = "Pheno",
+  bsize = 200,
+  loco.mat = loco_pred
+) 
+
+str(sumstats_regenie)
+```
+This function returns a data frame containing the REGENIE summary statistics.
 
 10. Generate Manhatthan and Q-Q plots based on the REGENIE association results and compute $\lambda_{GC}$. Compare with output from Questions 4-6.
   
