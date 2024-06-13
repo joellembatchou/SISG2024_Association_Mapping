@@ -128,7 +128,7 @@ data.frame(
   ),
   "Key" = c(
  paste0(print.link("HTML", "Session03_practical_Key.html")),
-"" , # paste0(print.link("HTML", "")),
+ paste0(print.link("HTML", "SISGM19_prac4Solution.html")),
 "" , # paste0(print.link("HTML", "")),
 ""  # paste0(print.link("HTML", ""))
   )
