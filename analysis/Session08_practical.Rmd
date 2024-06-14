@@ -24,10 +24,12 @@ We will generate a simulated dataset consisting of 3 binary traits with differen
 We first need to define the path to the directory containing the PLINK 1.9 binary.
 ```{r echo=FALSE}
 plink_binary <- "/Users/joelle.mbatchou/software/bins/plink1.9" 
+regenie_binary <- "/Users/joelle.mbatchou/software/bins/regenie"
 ```
 
 ```{r eval=FALSE}
 plink_binary <- "/SISGM19/bin/plink1.9" 
+regenie_binary <- "/SISGM19/bin/regenie" 
 ```
 
 If you don't have REGENIE installed on your machine, download the R implementation
