@@ -203,6 +203,33 @@ You can explore the impact of different genetic architectures by analyzing 3 sim
 * "Pheno_burden_skat": 60% of the variant are causal, and they all have positive effects on the trait
 * "Pheno_skat": 20% of the variants are causal and the effect direction (+/-) is randomly assigned
 
+Here is R code used to generate the phenotypes:
+```{r eval=FALSE}
+G <- BEDMatrix::BEDMatrix("data/rv_geno_chr1", simple_names = TRUE)
+N <- nrow(G)
+nsnps <- ncol(G)
+
+# Parameters to change
+# sparse : set n.causal = 1
+# burden_skat : set prop_causal=0.6 and prop_pos_beta=1
+# skat : set prop_causal=0.2 and prop_pos_beta=0.5
+prop_causal <- 1
+prop_pos_beta <- 1
+h2g <- 0.01
+
+n.causal <- round(nsnps * prop_causal)
+causal.index <- sample(ncol(G), n.causal)
+
+b_snp <- sqrt(h2g/n.causal)
+beta <- rep(b_snp, n.causal)
+beta_sign <- sample(c(rep(1, round(n.causal * prop_pos_beta)), rep(-1, n.causal - round(n.causal * prop_pos_beta))))
+h2e <- 1 - h2g
+
+y <- scale(G[, causal.index]) %*% beta + rnorm(N, sd = sqrt(h2e))
+```
+
+
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 # cleanup
 file.remove(list.files(pattern = "chr1_region_rv*"))
