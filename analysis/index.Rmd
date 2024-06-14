@@ -163,9 +163,9 @@ data.frame(
     " "
   ),
   "Key" = c(
-"" , # paste0(print.link("HTML", "Session07_practical_Key.html")),
+paste0(print.link("HTML", "Session07_practical_Key.html")),
 "" , # paste0(print.link("HTML", "Session08_practical_Key.html")),
-"" , # paste0(print.link("HTML", "")),
+"" , #  paste0(print.link("HTML", "SISGM19_prac9Solution.html")),
     " "
   )
   , check.names = FALSE) %>%
