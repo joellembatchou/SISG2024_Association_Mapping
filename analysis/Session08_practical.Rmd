@@ -21,15 +21,13 @@ library(ggplot2)
 We will generate a simulated dataset consisting of 3 binary traits with different amounts of case-control imbalance, and a genetic data set of **null** SNPs to examine the distribution of the test statistics when  scanning for associations.
 
 ## Data preparation
-We first need to define the path to the directory containing the PLINK 1.9 and PLINK2 binary.
+We first need to define the path to the directory containing the PLINK 1.9 binary.
 ```{r echo=FALSE}
 plink_binary <- "/Users/joelle.mbatchou/software/bins/plink1.9" 
-plink2_binary <- "/Users/joelle.mbatchou/software/bins/plink2" 
 ```
 
 ```{r eval=FALSE}
 plink_binary <- "/SISGM19/bin/plink1.9" 
-plink2_binary <- "/SISGM19/bin/plink2" 
 ```
 
 If you don't have REGENIE installed on your machine, download the R implementation
